@@ -32,6 +32,12 @@ pub fn build(b: *std.Build) void {
     });
     lib.linkLibCpp();
 
+    _ = b.addModule(name, .{
+        .target = target,
+        .optimize = optimize,
+        .root_source_file = b.path("src/root.zig"),
+    });
+
     const yoga_dep = b.dependency("yoga", .{});
 
     const yoga_files = &.{
